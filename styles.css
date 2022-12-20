@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: auto;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 360px;
+    background-color: rgb(214, 214, 214);
+    border-radius: 15px;
+}
+
+.display {
+    width: 360px;
+    height: 120px;
+    border-radius: 15px;
+    background-color: rgb(59, 59, 59);
+}
+
+.buttons {
+    display: flex;
+}
+
+.data {
+    display:flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+}
+
+.operations {
+    display: flex;
+    flex-direction: column;
+}
