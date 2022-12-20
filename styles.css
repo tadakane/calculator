@@ -3,7 +3,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 95vh;
     min-width: auto;
 }
 
@@ -18,13 +18,23 @@ body {
 }
 
 .display {
-    width: 360px;
-    height: 120px;
+    width: 320px;
+    height: 110px;
     border-radius: 15px;
     background-color: rgb(59, 59, 59);
+    color: white;
+    font-size: 60px;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    padding:5px 20px;
 }
 
 .buttons {
+    display: flex;
+}
+
+.top-operations {
     display: flex;
 }
 
@@ -38,4 +48,29 @@ body {
 .operations {
     display: flex;
     flex-direction: column;
+}
+
+.data-input, .operator {
+    width: 90px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.data-input:hover, .operator:hover {
+    cursor: pointer;
+}
+
+.data-input {
+    border-color: rgb(220, 255, 173);
+    background-color: rgb(220, 255, 173);
+}
+
+.operator {
+    border-color: rgb(255, 214, 214);
+    background-color: rgb(255, 214, 214);
 }
