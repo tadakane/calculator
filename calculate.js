@@ -50,6 +50,67 @@ function changeDisplay(input){
             }
         }
     }
+    else {
+        if (input === 10)
+            display.textContent = data1 *= -1;
+        else if (input === 11) {
+            if (op === false) {
+                second = false;
+                data2 = 0;
+            }
+            if (op === true && second === true) {
+                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
+                second = false;
+                data2 = 0;
+            }
+            operator = "+";
+            op = true;
+        }
+        else if (input === 12) {
+            if (op === false) {
+                second = false;
+                data2 = 0;
+            }
+            if (op === true && second === true) {
+                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
+                second = false;
+                data2 = 0;
+            }
+            operator = "-";
+            op = true;
+        }
+        else if (input === 13) {
+            if (op === false) {
+                second = false;
+                data2 = 0;
+            }
+            if (op === true && second === true) {
+                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
+                second = false;
+                data2 = 0;
+            }
+            operator = "*";
+            op = true;
+        }
+        else if (input === 14) {
+            if (op === false) {
+                second = false;
+                data2 = 0;
+            }
+            if (op === true && second === true) {
+                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
+                second = false;
+                data2 = 0;
+            }
+            operator = "/";
+            op = true;
+        }
+        else if (input === 15)
+            if (second === true) {
+                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
+                op = false;
+            }
+    }
 }
 
 let data1 = 0;
