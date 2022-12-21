@@ -26,90 +26,66 @@ function operate(op, num1, num2) {
 }
 
 function changeDisplay(input){
-    let display = document.querySelector(".display");
     if (input < 10){
-        if (op === false) {
-            if (display.textContent == 0) {
-                display.textContent = input;
-                data1 = input;
-            }
-            else if (display.textContent.length < 11){
-                display.textContent += input;
-                data1 += String(input);
-            }
-        }
-        else if (op === true) {
-            second = true;
-            if (data2 == 0) {
-                display.textContent = input;
-                data2 = input;
-            }
-            else if (display.textContent.length < 11){
-                display.textContent += input;
-                data2 += String(input);
-            }
-        }
+        dataInput(input);
     }
     else {
-        if (input === 10)
+        opInput(input);
+    }
+}
+
+function dataInput(input){
+    let display = document.querySelector(".display");
+    if (op === false) {
+        if (display.textContent == 0) {
+            display.textContent = input;
+            data1 = input;
+        }
+        else if (display.textContent.length < 11){
+            display.textContent += input;
+            data1 += String(input);
+        }
+    }
+    else if (op === true) {
+        second = true;
+        if (data2 == 0) {
+            display.textContent = input;
+            data2 = input;
+        }
+        else if (display.textContent.length < 11){
+            display.textContent += input;
+            data2 += String(input);
+        }
+    }
+}
+
+function opInput(input) {
+    let display = document.querySelector(".display");
+    if (input === 10)
             display.textContent = data1 *= -1;
-        else if (input === 11) {
-            if (op === false) {
-                second = false;
-                data2 = 0;
-            }
-            if (op === true && second === true) {
-                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
-                second = false;
-                data2 = 0;
-            }
+    else if (input >= 11 && input <= 14) {
+        if (op === false) {
+            second = false;
+            data2 = 0;
+        }
+        else if (op === true && second === true) {
+            display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
+            second = false;
+            data2 = 0;
+        }
+        if (input === 11)
             operator = "+";
-            op = true;
-        }
-        else if (input === 12) {
-            if (op === false) {
-                second = false;
-                data2 = 0;
-            }
-            if (op === true && second === true) {
-                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
-                second = false;
-                data2 = 0;
-            }
+        else if (input === 12)
             operator = "-";
-            op = true;
-        }
-        else if (input === 13) {
-            if (op === false) {
-                second = false;
-                data2 = 0;
-            }
-            if (op === true && second === true) {
-                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
-                second = false;
-                data2 = 0;
-            }
+        else if (input === 13)
             operator = "*";
-            op = true;
-        }
-        else if (input === 14) {
-            if (op === false) {
-                second = false;
-                data2 = 0;
-            }
-            if (op === true && second === true) {
-                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
-                second = false;
-                data2 = 0;
-            }
+        else if (input === 14)
             operator = "/";
-            op = true;
-        }
-        else if (input === 15)
-            if (second === true) {
-                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
-                op = false;
-            }
+        op = true;
+    }
+    else if (input === 15 && second === true) {
+        display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
+        op = false;
     }
 }
 
