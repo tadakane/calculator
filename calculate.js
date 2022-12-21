@@ -37,7 +37,8 @@ function changeDisplay(input){
 function dataInput(input){
     let display = document.querySelector(".display");
     if (op === false) {
-        if (display.textContent == 0) {
+        divZero = false;
+        if (data1 == 0) {
             display.textContent = input;
             data1 = input;
         }
@@ -56,12 +57,16 @@ function dataInput(input){
             display.textContent += input;
             data2 += String(input);
         }
+        if (divZero === true) {
+            operator = "/";
+            data2 = 0;
+        }
     }
 }
 
 function opInput(input) {
     let display = document.querySelector(".display");
-    if (input === 10)
+    if (input === 10 && divZero === false)
             display.textContent = data1 *= -1;
     else if (input >= 11 && input <= 14) {
         if (op === false) {
@@ -69,23 +74,46 @@ function opInput(input) {
             data2 = 0;
         }
         else if (op === true && second === true) {
-            display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
+            if (operator === "/" && data2 === 0) {
+                display.textContent = "No."
+                data1 = 0;
+                divZero = true;
+            } 
+            else
+                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
             second = false;
             data2 = 0;
         }
-        if (input === 11)
+        if (input === 11) {
             operator = "+";
-        else if (input === 12)
+        }
+        else if (input === 12) {
             operator = "-";
-        else if (input === 13)
+        }
+        else if (input === 13) {
             operator = "*";
-        else if (input === 14)
+        }
+        else if (input === 14) {
             operator = "/";
+        }
         op = true;
     }
     else if (input === 15 && second === true) {
-        display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
+        if (operator === "/" && data2 === 0) {
+            display.textContent = "No."
+            data1 = 0;
+            divZero = true;
+        } 
+        else
+            display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
         op = false;
+    }
+    else if (input === 16) {
+        display.textContent = data1 = data2 = 0;
+        op = false;
+        second = false;
+        operator = "";
+        divZero = false;
     }
 }
 
@@ -94,6 +122,7 @@ let data2 = 0;
 let op = false;
 let second = false;
 let operator = "";
+let divZero = false;
 
 const nine = document.querySelector("#nine");
 nine.addEventListener('click', () => changeDisplay(9));
@@ -127,3 +156,5 @@ const divi = document.querySelector("#divide");
 divi.addEventListener('click', () => changeDisplay(14));
 const equ = document.querySelector("#equal");
 equ.addEventListener('click', () => changeDisplay(15));
+const clear = document.querySelector("#clear");
+clear.addEventListener('click', () => changeDisplay(16));
