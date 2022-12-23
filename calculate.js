@@ -73,7 +73,7 @@ function opInput(input) {
             temp = data1 * -1;
             if (temp < Number.MAX_SAFE_INTEGER && temp > Number.MIN_SAFE_INTEGER)
                 display.textContent = data1 = temp;
-            checkLength(input);
+            checkLength();
         }
         else {
             temp = data2 * -1;
@@ -95,7 +95,7 @@ function opInput(input) {
                 temp = operate(operator, parseInt(data1), parseInt(data2));
                 if (temp < Number.MAX_SAFE_INTEGER && temp > Number.MIN_SAFE_INTEGER)
                     display.textContent = data1 = temp;
-                checkLength(input);
+                checkLength();
             }
             second = false;
             data2 = 0;
@@ -124,7 +124,7 @@ function opInput(input) {
             temp = operate(operator, parseInt(data1), parseInt(data2));
             if (temp < Number.MAX_SAFE_INTEGER && temp > Number.MIN_SAFE_INTEGER)
                 display.textContent = data1 = temp;
-            checkLength(input);
+            checkLength();
             equals = true;
         }
         op = false;
@@ -136,9 +136,36 @@ function opInput(input) {
         operator = "";
         divZero = false;
     }
+    else if (input === 17) {
+        backSpace();
+    }
 }
 
-function checkLength(input) {
+function backSpace() {
+    let display = document.querySelector(".display");
+    if (op === false && second === false) {
+        if (display.textContent.length === 1) {
+            data1 = 0;
+            display.textContent = 0;
+        }
+        else {
+            data1 = String(data1).slice(0, -1);
+            display.textContent = display.textContent.slice(0, -1);
+        }
+    }
+    else if (op === true && second === true) {
+        if (display.textContent.length === 1) {
+            data2 = 0;
+            display.textContent = 0;
+        }
+        else {
+            data2 = String(data2).slice(0, -1);
+            display.textContent = display.textContent.slice(0, -1);
+        }
+    }
+}
+
+function checkLength() {
     let display = document.querySelector(".display");
     let maxLength;
     let sciNotat = {};
@@ -199,3 +226,6 @@ const equ = document.querySelector("#equal");
 equ.addEventListener('click', () => changeDisplay(15));
 const clear = document.querySelector("#clear");
 clear.addEventListener('click', () => changeDisplay(16));
+const back = document.querySelector("#back");
+back.addEventListener('click', () => changeDisplay(17));
+
