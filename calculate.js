@@ -38,11 +38,12 @@ function dataInput(input){
     let display = document.querySelector(".display");
     if (op === false) {
         divZero = false;
-        if (data1 == 0) {
+        if (data1 == 0 || equals === true) {
             display.textContent = input;
             data1 = input;
+            equals = false;
         }
-        else if (display.textContent.length < 11){
+        else if (String(Math.abs(data1)).length < 10){
             display.textContent += input;
             data1 += String(input);
         }
@@ -53,7 +54,7 @@ function dataInput(input){
             display.textContent = input;
             data2 = input;
         }
-        else if (display.textContent.length < 11){
+        else if (String(Math.abs(data2)).length < 10){
             display.textContent += input;
             data2 += String(input);
         }
@@ -66,8 +67,19 @@ function dataInput(input){
 
 function opInput(input) {
     let display = document.querySelector(".display");
-    if (input === 10 && divZero === false)
-            display.textContent = data1 *= -1;
+    let temp = 0;
+    if (input === 10 && divZero === false) {
+        if (op === false) {
+            temp = data1 * -1;
+            if (temp < Number.MAX_SAFE_INTEGER && temp > Number.MIN_SAFE_INTEGER)
+                display.textContent = data1 = temp;
+            checkLength(input);
+        }
+        else {
+            temp = data2 * -1;
+            display.textContent = data2 = temp;
+        }
+    }
     else if (input >= 11 && input <= 14) {
         if (op === false) {
             second = false;
@@ -79,8 +91,12 @@ function opInput(input) {
                 data1 = 0;
                 divZero = true;
             } 
-            else
-                display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
+            else {
+                temp = operate(operator, parseInt(data1), parseInt(data2));
+                if (temp < Number.MAX_SAFE_INTEGER && temp > Number.MIN_SAFE_INTEGER)
+                    display.textContent = data1 = temp;
+                checkLength(input);
+            }
             second = false;
             data2 = 0;
         }
@@ -104,8 +120,13 @@ function opInput(input) {
             data1 = 0;
             divZero = true;
         } 
-        else
-            display.textContent = data1 = operate(operator, parseInt(data1), parseInt(data2));
+        else {
+            temp = operate(operator, parseInt(data1), parseInt(data2));
+            if (temp < Number.MAX_SAFE_INTEGER && temp > Number.MIN_SAFE_INTEGER)
+                display.textContent = data1 = temp;
+            checkLength(input);
+            equals = true;
+        }
         op = false;
     }
     else if (input === 16) {
@@ -117,12 +138,32 @@ function opInput(input) {
     }
 }
 
+function checkLength(input) {
+    let display = document.querySelector(".display");
+    let maxLength;
+    let sciNotat = {};
+    if (parseInt(display.textContent) < 0)
+        maxLength = 11;
+    else 
+        maxLength = 10;
+    
+    if (display.textContent.length > maxLength) {
+        [sciNotat.coefficient, sciNotat.exponent] = data1.toExponential().split('e+');
+        display.textContent =
+            parseFloat(sciNotat.coefficient).toFixed(10 - 
+                    (sciNotat.exponent.toString().length)-2) +
+                    "e" + sciNotat.exponent;
+        data1 = parseFloat(sciNotat.coefficient) * (10 ** parseInt(sciNotat.exponent));    
+    }
+}
+
 let data1 = 0;
 let data2 = 0;
 let op = false;
 let second = false;
 let operator = "";
 let divZero = false;
+let equals = false;
 
 const nine = document.querySelector("#nine");
 nine.addEventListener('click', () => changeDisplay(9));
