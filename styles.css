@@ -5,6 +5,7 @@ body {
     align-items: center;
     min-height: 95vh;
     min-width: auto;
+    font-family: 'Lato', sans-serif;
 }
 
 .calculator {
@@ -13,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 360px;
-    background-color: rgb(214, 214, 214);
+    background-color: black;
     border-radius: 15px;
 }
 
@@ -21,9 +22,9 @@ body {
     width: 340px;
     height: 110px;
     border-radius: 15px;
-    background-color: rgb(59, 59, 59);
+    background-color: black;
     color: white;
-    font-size: 58px;
+    font-size: 53px;
     display: flex;
     justify-content: end;
     align-items: flex-end;
@@ -36,6 +37,11 @@ body {
 
 .top-operations {
     display: flex;
+    justify-content: flex-end;
+}
+
+.double {
+    flex-grow: 1;
 }
 
 .data {
@@ -50,47 +56,56 @@ body {
     flex-direction: column;
 }
 
-.data-input, .operator {
-    width: 90px;
-    height: 75px;
+.data-input, .operator, .top-operator {
+    width: 80px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 20px;
+    border-radius: 25px;
     font-size: 30px;
     font-weight: bold;
-    transition: all 0.6s ease;
+    margin: 5px;
+    font-family: 'Lato', sans-serif;
 }
 
-.data-input:hover, .operator:hover {
+.data-input:hover, .operator:hover, .top-operator {
     cursor: pointer;
 }
 
 .data-input {
-    border-color: rgb(97, 97, 97);
+    border: rgb(97, 97, 97);
     background-color: rgb(97, 97, 97);
     color: white;
 }
 
 .operator {
-    border-color: rgb(255, 185, 185);
+    border: rgb(255, 185, 185);
     background-color: rgb(255, 185, 185);
 }
 
 .data-input:hover {
-    transition: none;
-    border-color: rgb(49, 49, 49);
+    border: rgb(49, 49, 49);
     background-color: rgb(49, 49, 49);
 }
 
 .operator:hover {
-    transition: none;
-    border-color: rgb(255, 134, 134);
+    border: rgb(255, 134, 134);
     background-color: rgb(253, 134, 134);
 }
 
 .selected {
+    border: white;
     background-color: white;
-    border-color: white;
     color: rgb(255, 214, 214);
+}
+
+.top-operator {
+    border: rgb(195, 195, 195);
+    background-color: rgb(195, 195, 195);
+}
+
+.top-operator:hover {
+    border: rgb(231, 231, 231);
+    background-color: rgb(231, 231, 231);
 }
