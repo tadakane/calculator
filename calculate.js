@@ -67,6 +67,9 @@ function dataInput(input){
     }
     else if (op === true) {
         second = true;
+        if (currentOp) {
+            currentOp.classList.remove('selected');
+        }
         if (data2 === 0) {
             if (input === -1) {
                 display.textContent = "0.";
@@ -121,6 +124,7 @@ function opInput(input) {
         }
     }
     else if (input >= 11 && input <= 14) {
+        currentOp = document.querySelector('.selected');
         dot = false;
         zeroCount = 0;
         if (op === false) {
@@ -144,15 +148,31 @@ function opInput(input) {
         }
         if (input === 11) {
             operator = "+";
+            if (currentOp)
+                currentOp.classList.remove('selected');
+            plus.classList.add('selected');
+            currentOp = plus;
         }
         else if (input === 12) {
             operator = "-";
+            if (currentOp)
+                currentOp.classList.remove('selected');
+            minus.classList.add('selected');
+            currentOp = minus;
         }
         else if (input === 13) {
             operator = "*";
+            if (currentOp)
+                currentOp.classList.remove('selected');
+            multi.classList.add('selected');
+            currentOp = multi
         }
         else if (input === 14) {
             operator = "/";
+            if (currentOp)
+                currentOp.classList.remove('selected');
+            divi.classList.add('selected');
+            currentOp = divi;
         }
         op = true;
     }
@@ -173,6 +193,10 @@ function opInput(input) {
     }
     else if (input === 16) {
         display.textContent = data1 = data2 = 0;
+        if (currentOp) {
+            currentOp.classList.remove('selected');
+        }
+        currentOp = null;
         op = false;
         second = false;
         operator = "";
@@ -252,6 +276,7 @@ let divZero = false;
 let equals = false;
 let dot = false;
 let zeroCount = 0;
+let currentOp;
 
 const nine = document.querySelector("#nine");
 nine.addEventListener('click', () => changeDisplay(9));
