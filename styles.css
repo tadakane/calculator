@@ -18,16 +18,16 @@ body {
 }
 
 .display {
-    width: 320px;
+    width: 340px;
     height: 110px;
     border-radius: 15px;
     background-color: rgb(59, 59, 59);
     color: white;
-    font-size: 60px;
+    font-size: 58px;
     display: flex;
     justify-content: end;
     align-items: flex-end;
-    padding:5px 20px;
+    padding:5px 10px;
 }
 
 .buttons {
@@ -59,6 +59,7 @@ body {
     border-radius: 20px;
     font-size: 30px;
     font-weight: bold;
+    transition: all 0.6s ease;
 }
 
 .data-input:hover, .operator:hover {
@@ -66,11 +67,30 @@ body {
 }
 
 .data-input {
-    border-color: rgb(220, 255, 173);
-    background-color: rgb(220, 255, 173);
+    border-color: rgb(97, 97, 97);
+    background-color: rgb(97, 97, 97);
+    color: white;
 }
 
 .operator {
-    border-color: rgb(255, 214, 214);
-    background-color: rgb(255, 214, 214);
+    border-color: rgb(255, 185, 185);
+    background-color: rgb(255, 185, 185);
+}
+
+.data-input:hover {
+    transition: none;
+    border-color: rgb(49, 49, 49);
+    background-color: rgb(49, 49, 49);
+}
+
+.operator:hover {
+    transition: none;
+    border-color: rgb(255, 134, 134);
+    background-color: rgb(253, 134, 134);
+}
+
+.selected {
+    background-color: white;
+    border-color: white;
+    color: rgb(255, 214, 214);
 }
