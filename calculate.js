@@ -127,6 +127,8 @@ function opInput(input) {
             //check for limits of number
             if (parseFloat(temp) < Number.MAX_SAFE_INTEGER && parseFloat(temp) > Number.MIN_SAFE_INTEGER)
                 display.textContent = data1 = temp;
+            else
+                alert("Error, that operation exceeds the limit for numbers on this calculator.");
             checkLength();
         }
         else {
@@ -160,6 +162,8 @@ function opInput(input) {
                 temp = operate(operator, parseFloat(data1), parseFloat(data2));
                 if (temp < Number.MAX_SAFE_INTEGER && temp > Number.MIN_SAFE_INTEGER)
                     display.textContent = data1 = temp;
+                else 
+                    alert("Error, that operation exceeds the limit for numbers on this calculator.");
                 checkLength();
             }
             second = false;
@@ -207,6 +211,8 @@ function opInput(input) {
             temp = operate(operator, parseFloat(data1), parseFloat(data2));
             if (temp < Number.MAX_SAFE_INTEGER && temp > Number.MIN_SAFE_INTEGER)
                 display.textContent = data1 = temp;
+            else
+                alert("Error, that operation exceeds the limit for numbers on this calculator.")
             checkLength();
             equals = true;
         }
